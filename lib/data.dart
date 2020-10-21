@@ -16,7 +16,65 @@ List<NavigationItem> getNavigationItemList(){
     NavigationItem(Icons.person),
   ];
 }
+class Bike {
 
+  String brand;
+  String model;
+  double price;
+  String condition;
+  List<String> images;
+
+  Bike(this.brand, this.model, this.price, this.condition, this.images);
+
+}
+List<Bike> getBikeList(){
+  return<Bike>[
+    Bike(
+      "Kawasaki",
+      "Ninja",
+      1000,
+      "Monthly",
+      [
+        "assets/images/land_rover_0.png",
+        "assets/images/land_rover_1.png",
+        "assets/images/land_rover_2.png",
+      ],
+    ),
+    Bike(
+      "Kawasaki",
+      "Ninja",
+      1000,
+      "Monthly",
+      [
+        "assets/images/land_rover_0.png",
+        "assets/images/land_rover_1.png",
+        "assets/images/land_rover_2.png",
+      ],
+    ),
+    Bike(
+      "Kawasaki",
+      "Ninja",
+      1000,
+      "Monthly",
+      [
+        "assets/images/land_rover_0.png",
+        "assets/images/land_rover_1.png",
+        "assets/images/land_rover_2.png",
+      ],
+    ),
+    Bike(
+      "Kawasaki",
+      "Ninja",
+      1000,
+      "Monthly",
+      [
+        "assets/images/land_rover_0.png",
+        "assets/images/land_rover_1.png",
+        "assets/images/land_rover_2.png",
+      ],
+    ),
+  ];
+}
 class Car {
 
   String brand;

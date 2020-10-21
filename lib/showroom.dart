@@ -6,6 +6,9 @@ import 'package:car_rental/car_widget.dart';
 import 'package:car_rental/dealer_widget.dart';
 import 'package:car_rental/available_cars.dart';
 import 'package:car_rental/book_car.dart';
+import 'package:car_rental/book_bike.dart';
+import 'package:car_rental/bike_widget.dart';
+import 'package:car_rental/available_bikes.dart';
 
 class Showroom extends StatefulWidget {
   @override
@@ -16,7 +19,7 @@ class Showroom extends StatefulWidget {
 class _ShowroomState extends State<Showroom> {
   List<NavigationItem> navigationItems = getNavigationItemList();
   NavigationItem selectedItem;
-
+  List<Bike> bikes = getBikeList();
   List<Car> cars = getCarList();
   List<Dealer> dealers = getDealerList();
 
@@ -194,7 +197,7 @@ class _ShowroomState extends State<Showroom> {
                           children: [
 
                             Text(
-                              "  The Four Wheel Mania",
+                              "  The Two Wheel Mania",
                               style: GoogleFonts.raleway(
                                 fontSize: 19,
 
@@ -240,7 +243,7 @@ class _ShowroomState extends State<Showroom> {
                         child: ListView(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
-                          children: buildDeals(),
+                          children: buildBikeDeals(),
                         ),
                       ),
 
@@ -248,7 +251,7 @@ class _ShowroomState extends State<Showroom> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => AvailableCars()),
+                            MaterialPageRoute(builder: (context) => AvailableBikes()),
                           );
                         },
 
@@ -386,6 +389,24 @@ class _ShowroomState extends State<Showroom> {
           },
           child: buildCar(cars[i], i)
         )
+      );
+    }
+    return list;
+  }
+
+  List<Widget> buildBikeDeals(){
+    List<Widget> list = [];
+    for (var i = 0; i < bikes.length; i++) {
+      list.add(
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookBike(bike: bikes[i])),
+                );
+              },
+              child: buildBike(bikes[i], i)
+          )
       );
     }
     return list;
