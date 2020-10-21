@@ -39,14 +39,14 @@ Widget buildDealer(Dealer dealer, int index){
           dealer.name,
           style: GoogleFonts.raleway(
             fontSize: 18,
-            fontWeight: FontWeight.bold,
+
             height: 1,
             color: Colors.white,
           ),
         ),
 
         Text(
-          dealer.offers.toString() + " offers",
+          dealer.offers.toString() + " teams",
           style: GoogleFonts.raleway(
             fontSize: 12,
             color: Colors.white,

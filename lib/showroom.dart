@@ -328,7 +328,7 @@ class _ShowroomState extends State<Showroom> {
                           children: [
 
                             Text(
-                              " Top Brands",
+                              " Motorsports",
                               style: GoogleFonts.raleway(
                                 fontSize: 19,
 
@@ -356,8 +356,8 @@ class _ShowroomState extends State<Showroom> {
                         ),
                       ),
                       Container(
-                        height: 155,
-                        margin: EdgeInsets.only(bottom: 16),
+                        height: 160,
+                        margin: EdgeInsets.only(bottom: 10),
                         child: ListView(
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,

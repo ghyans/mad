@@ -213,18 +213,17 @@ class Dealer {
 List<Dealer> getDealerList(){
   return <Dealer>[
     Dealer(
-      "Hertz",
-      174,
-      "assets/images/hertz.png",
+      "Formula 1",
+      10,
+      "assets/images/f1logo.jpg",
     ),
     Dealer(
-      "Avis",
-      126,
+      "Moto GP",
+      10,
       "assets/images/avis.png",
     ),
     Dealer(
-      "Tesla",
-      89,
+      "Nascar", 10,
       "assets/images/tesla.jpg",
     ),
   ];
