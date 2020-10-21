@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:car_rental/constants.dart';
 import 'package:car_rental/data.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BookCar extends StatefulWidget {
 
@@ -31,7 +32,7 @@ class _BookCarState extends State<BookCar> {
       height: 8,
       width: isActive ? 20 : 8,
       decoration: BoxDecoration(
-        color: isActive ? Colors.black : Colors.grey[400],
+        color: isActive ? Colors.black54 : Colors.black,
         borderRadius: BorderRadius.all(
           Radius.circular(12),
         ),
@@ -42,7 +43,7 @@ class _BookCarState extends State<BookCar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -81,7 +82,7 @@ class _BookCarState extends State<BookCar> {
                                 ),
                                 child: Icon(
                                   Icons.keyboard_arrow_left,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 28,
                                 )
                               ),
@@ -90,44 +91,13 @@ class _BookCarState extends State<BookCar> {
                             Row(
                               children: [
 
-                                Container(
-                                  width: 45,
-                                  height: 45,
-                                  decoration: BoxDecoration(
-                                    color: kPrimaryColor,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15),
-                                    ),
-                                  ),
-                                  child: Icon(
-                                    Icons.bookmark_border,
-                                    color: Colors.white,
-                                    size: 22,
-                                  )
-                                ),
+
 
                                 SizedBox(
                                   width: 16,
                                 ),
 
-                                Container(
-                                  width: 45,
-                                  height: 45,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(15),
-                                    ),
-                                    border: Border.all(
-                                      color: Colors.grey[300],
-                                      width: 1,
-                                    ),
-                                  ),
-                                  child: Icon(
-                                    Icons.share,
-                                    color: Colors.black,
-                                    size: 22,
-                                  )
-                                ),
+
 
                               ],
                             ),
@@ -144,8 +114,8 @@ class _BookCarState extends State<BookCar> {
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
                           widget.car.model,
-                          style: TextStyle(
-                            color: Colors.black,
+                          style: GoogleFonts.raleway(
+                            color: Colors.white,
                             fontSize: 36,
                             fontWeight: FontWeight.bold,
                           ),
@@ -153,16 +123,16 @@ class _BookCarState extends State<BookCar> {
                       ),
 
                       SizedBox(
-                        height: 8,
+                        height: 10,
                       ),
 
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 19),
                         child: Text(
                           widget.car.brand,
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14,
+                          style: GoogleFonts.raleway(
+                            color: Colors.white,
+                            fontSize: 22,
                           ),
                         ),
                       ),
@@ -212,27 +182,14 @@ class _BookCarState extends State<BookCar> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
 
-                            buildPricePerPeriod(
-                              "12",
-                              "4.350",
-                              true,
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
+
+
                             buildPricePerPeriod(
                               "6",
-                              "4.800",
+                              widget.car.condition,
                               false,
                             ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            buildPricePerPeriod(
-                              "1",
-                              "5.100",
-                              false,
-                            ),
+
 
                           ],
                         ),
@@ -245,7 +202,16 @@ class _BookCarState extends State<BookCar> {
               
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[100],
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end:
+                    Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+                    colors: [
+                      const Color(0xfffee000),
+                      const Color(0xffee0000)
+                    ], // red to yellow
+                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                  ),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -258,11 +224,11 @@ class _BookCarState extends State<BookCar> {
                     Padding(
                       padding: EdgeInsets.only(top: 16, left: 16, right: 16),
                       child: Text(
-                        "SPECIFICATIONS",
-                        style: TextStyle(
+                        "                            SPECIFICATIONS",
+                        style: GoogleFonts.raleway(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -275,12 +241,11 @@ class _BookCarState extends State<BookCar> {
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         children: [
-                          buildSpecificationCar("Color", "White"),
-                          buildSpecificationCar("Gearbox", "Automatic"),
-                          buildSpecificationCar("Seat", "4"),
-                          buildSpecificationCar("Motor", "v10 2.0"),
-                          buildSpecificationCar("Speed (0-100)", "3.2 sec"),
-                          buildSpecificationCar("Top Speed", "121 mph"),
+                          buildSpecificationCar("Color", widget.car.color,),
+                          buildSpecificationCar("Gearbox", widget.car.gearbox,),
+                          buildSpecificationCar("Seat", widget.car.seating,),
+                          buildSpecificationCar("Speed (0-100)", widget.car.condition,),
+                          buildSpecificationCar("Top Speed", widget.car.topspeed,),
                         ],
                       ),
                     ),
@@ -297,7 +262,7 @@ class _BookCarState extends State<BookCar> {
         height: 90,
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.black,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -308,9 +273,9 @@ class _BookCarState extends State<BookCar> {
               children: [
 
                 Text(
-                  "12 Month",
+                  "Ex-Showroom Price",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
                   ),
@@ -322,27 +287,28 @@ class _BookCarState extends State<BookCar> {
 
                 Row(
                   children: [
-
                     Text(
-                      "USD 4,350",
+                      "USD",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+
+
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      widget.car.price,
+                      style: TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 22,
                       ),
                     ),
 
-                    SizedBox(
-                      width: 8,
-                    ),
-
-                    Text(
-                      "per month",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 14,
-                      ),
-                    ),
 
                   ],
                 ),
@@ -352,7 +318,16 @@ class _BookCarState extends State<BookCar> {
             Container(
               height: 50,
               decoration: BoxDecoration(
-                color: kPrimaryColor,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end:
+                  Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+                  colors: [
+                    const Color(0xffe00000),
+                    const Color(0xff0000)
+                  ], // red to yellow
+                  tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                ),
                 borderRadius: BorderRadius.all(
                   Radius.circular(15),
                 ),
@@ -361,7 +336,7 @@ class _BookCarState extends State<BookCar> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    "Book this car",
+                    widget.car.cartype,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -381,27 +356,35 @@ class _BookCarState extends State<BookCar> {
     return Expanded(
       child: Container(
         height: 110,
+
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: selected ? kPrimaryColor : Colors.white,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end:
+            Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+            colors: [
+              const Color(0xffe00000),
+              const Color(0xff0000)
+            ], // red to yellow
+            tileMode: TileMode.repeated, // repeats the gradient over the canvas
+          ),
           borderRadius: BorderRadius.all(
             Radius.circular(15),
           ),
-          border: Border.all(
-            color: Colors.grey[300],
-            width: selected ? 0 : 1,
-          ),
+
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
             Text(
-              months + " Month",
+               " 0-100 kph",
               style: TextStyle(
-                color: selected ? Colors.white : Colors.black,
-                fontSize: 14,
+                color: selected ? Colors.white : Colors.white,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
+
               ),
             ),
 
@@ -412,16 +395,16 @@ class _BookCarState extends State<BookCar> {
             Text(
               price,
               style: TextStyle(
-                color: selected ? Colors.white : Colors.black,
+                color: selected ? Colors.white : Colors.white,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
 
             Text(
-              "USD",
+              "seconds",
               style: TextStyle(
-                color: selected ? Colors.white : Colors.black,
+                color: selected ? Colors.white : Colors.white,
                 fontSize: 14,
               ),
             ),
@@ -436,7 +419,7 @@ class _BookCarState extends State<BookCar> {
     return Container(
       width: 130,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.black,
         borderRadius: BorderRadius.all(
           Radius.circular(15),
         ),
@@ -451,7 +434,7 @@ class _BookCarState extends State<BookCar> {
           Text(
             title,
             style: TextStyle(
-              color: Colors.grey,
+              color: Colors.white,
               fontSize: 14,
             ),
           ),
@@ -463,7 +446,7 @@ class _BookCarState extends State<BookCar> {
           Text(
             data,
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),

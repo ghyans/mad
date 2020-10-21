@@ -5,7 +5,16 @@ import 'package:google_fonts/google_fonts.dart';
 Widget buildDealer(Dealer dealer, int index){
   return Container(
     decoration: BoxDecoration(
-      color: Colors.deepOrange,
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end:
+        Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+        colors: [
+          const Color(0xfffee000),
+          const Color(0xffee0000)
+        ], // red to yellow
+        tileMode: TileMode.repeated, // repeats the gradient over the canvas
+      ),
       borderRadius: BorderRadius.all(
         Radius.circular(10),
       ),

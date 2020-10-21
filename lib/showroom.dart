@@ -9,11 +9,20 @@ import 'package:car_rental/book_car.dart';
 import 'package:car_rental/book_bike.dart';
 import 'package:car_rental/bike_widget.dart';
 import 'package:car_rental/available_bikes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Showroom extends StatefulWidget {
   @override
   _ShowroomState createState() => _ShowroomState();
 
+}
+
+launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
 
 class _ShowroomState extends State<Showroom> {
@@ -34,11 +43,26 @@ class _ShowroomState extends State<Showroom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black54,
+        centerTitle: true,
 
+        title:  Text(
+          " The Auto World",
+          style: GoogleFonts.raleway(
+            fontSize:30,
+            fontWeight: FontWeight.bold,
+            color: Colors.red[800],
+
+
+
+          ),
+        ),
+      ),
 
       body: Container(
-        padding: MediaQuery.of(context).viewPadding,
+
         child: Column(
 
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -52,7 +76,16 @@ class _ShowroomState extends State<Showroom> {
                 physics: BouncingScrollPhysics(),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end:
+                      Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+                      colors: [
+                        const Color(0xff000000),
+                        const Color(0xff000000)
+                      ], // red to yellow
+                      tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                    ),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(0),
                       topRight: Radius.circular(0),
@@ -68,11 +101,11 @@ class _ShowroomState extends State<Showroom> {
                           children: [
 
                             Text(
-                              "  The Four Wheel Mania",
+                              "  Best of 4 wheels",
                               style: GoogleFonts.raleway(
                                 fontSize: 19,
 
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
 
@@ -95,7 +128,7 @@ class _ShowroomState extends State<Showroom> {
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   size: 15,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
 
                               ],
@@ -119,18 +152,27 @@ class _ShowroomState extends State<Showroom> {
                       ),
 
                       GestureDetector(
+
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => AvailableCars()),
-                          );
+                          const url = 'https://www.cardekho.com/upcomingcars';
+                          launchURL(url);
+
                         },
 
                         child: Padding(
                           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.black,
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end:
+                                Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+                                colors: [
+                                  const Color(0xffe00000),
+                                  const Color(0xff0000)
+                                ], // red to yellow
+                                tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                              ),
 
                               borderRadius: BorderRadius.all(
                                 Radius.circular(15),
@@ -148,7 +190,7 @@ class _ShowroomState extends State<Showroom> {
                                   children: [
 
                                     Text(
-                                      "View All",
+                                      "New Launches",
                                       style: GoogleFonts.raleway(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
@@ -157,7 +199,7 @@ class _ShowroomState extends State<Showroom> {
                                     ),
 
                                     Text(
-                                      "For the 1 percent.",
+                                      "Handpicked for you",
                                       style: GoogleFonts.raleway(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -201,7 +243,7 @@ class _ShowroomState extends State<Showroom> {
                               style: GoogleFonts.raleway(
                                 fontSize: 19,
 
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
 
@@ -224,7 +266,7 @@ class _ShowroomState extends State<Showroom> {
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   size: 15,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
 
                               ],
@@ -233,10 +275,6 @@ class _ShowroomState extends State<Showroom> {
                           ],
                         ),
                       ),
-
-
-
-
 
                       Container(
                         height: 260,
@@ -259,7 +297,16 @@ class _ShowroomState extends State<Showroom> {
                           padding: EdgeInsets.only(top: 16, right: 16, left: 16),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Colors.black,
+                              gradient: LinearGradient(
+                                begin: Alignment.topLeft,
+                                end:
+                                Alignment(0.8, 5), // 10% of the width, so there are ten blinds.
+                                colors: [
+                                  const Color(0xffe00000),
+                                  const Color(0xff0000)
+                                ], // red to yellow
+                                tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                              ),
 
                               borderRadius: BorderRadius.all(
                                 Radius.circular(15),
@@ -328,11 +375,11 @@ class _ShowroomState extends State<Showroom> {
                           children: [
 
                             Text(
-                              " Motorsports",
+                              " World of Motorsports",
                               style: GoogleFonts.raleway(
                                 fontSize: 19,
 
-                                color: Colors.black,
+                                color: Colors.white,
                               ),
                             ),
 
@@ -348,7 +395,7 @@ class _ShowroomState extends State<Showroom> {
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   size: 16,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ],
                             ),
