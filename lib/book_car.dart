@@ -183,8 +183,7 @@ class _BookCarState extends State<BookCar> {
                             children: widget.car.images.map((path) {
                               return Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16,),
-                                child: Hero(
-                                  tag: widget.car.model,
+                                child: Container(
                                   child: Image.asset(
                                     path,
                                     fit: BoxFit.scaleDown,

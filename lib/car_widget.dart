@@ -48,8 +48,7 @@ Widget buildCar(Car car, int index){
         Container(
           height: 120,
           child: Center(
-            child: Hero(
-              tag: car.model,
+            child: Container(
               child: Image.asset(
                 car.images[0],
                 fit: BoxFit.fitWidth,
