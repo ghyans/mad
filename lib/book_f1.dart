@@ -3,23 +3,23 @@ import 'package:car_rental/constants.dart';
 import 'package:car_rental/data.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class BookBike extends StatefulWidget {
+class BookF1 extends StatefulWidget {
 
-  final Bike bike;
+  final F1 f1;
 
-  BookBike({@required this.bike});
+  BookF1({@required this.f1});
 
   @override
-  _BookBikeState createState() => _BookBikeState();
+  _BookF1State createState() => _BookF1State();
 }
 
-class _BookBikeState extends State<BookBike> {
+class _BookF1State extends State<BookF1> {
 
   int _currentImage = 0;
 
   List<Widget> buildPageIndicator(){
     List<Widget> list = [];
-    for (var i = 0; i < widget.bike.images.length; i++) {
+    for (var i = 0; i < widget.f1.images.length; i++) {
       list.add(buildIndicator(i == _currentImage));
     }
     return list;
@@ -113,7 +113,7 @@ class _BookBikeState extends State<BookBike> {
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16),
                         child: Text(
-                          widget.bike.model,
+                          widget.f1.team,
                           style: GoogleFonts.raleway(
                             color: Colors.white,
                             fontSize: 36,
@@ -126,19 +126,13 @@ class _BookBikeState extends State<BookBike> {
                         height: 10,
                       ),
 
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 19),
-                        child: Text(
-                          widget.bike.brand,
-                          style: GoogleFonts.raleway(
-                            color: Colors.white,
-                            fontSize: 22,
-                          ),
-                        ),
-                      ),
-
                       SizedBox(
                         height: 8,
+                      ),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 19),
+
                       ),
 
                       Expanded(
@@ -150,7 +144,7 @@ class _BookBikeState extends State<BookBike> {
                                 _currentImage = page;
                               });
                             },
-                            children: widget.bike.images.map((path) {
+                            children: widget.f1.images.map((path) {
                               return Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16,),
                                 child: Container(
@@ -165,7 +159,7 @@ class _BookBikeState extends State<BookBike> {
                         ),
                       ),
 
-                      widget.bike.images.length > 1
+                      widget.f1.images.length > 1
                           ? Container(
                         margin: EdgeInsets.symmetric(vertical: 16),
                         height: 30,
@@ -186,7 +180,7 @@ class _BookBikeState extends State<BookBike> {
 
                             buildPricePerPeriod(
                               "6",
-                              widget.bike.condition,
+                              widget.f1.drivers,
                               false,
                             ),
 
@@ -241,11 +235,10 @@ class _BookBikeState extends State<BookBike> {
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         children: [
-                          buildSpecificationBike("Color", widget.bike.color,),
-                          buildSpecificationBike("Gearbox", widget.bike.gearbox,),
-                          buildSpecificationBike("Seat", widget.bike.seating,),
-                          buildSpecificationBike("Speed (0-100)", widget.bike.condition,),
-                          buildSpecificationBike("Top Speed", widget.bike.topspeed,),
+                          buildSpecificationBike("Weight", widget.f1.weight,),
+                          buildSpecificationBike("Gearbox", widget.f1.engine,),
+                          buildSpecificationBike("Seat", widget.f1.hp,),
+
                         ],
                       ),
                     ),
@@ -272,14 +265,6 @@ class _BookBikeState extends State<BookBike> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                Text(
-                  "Ex-Showroom Price",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
 
                 SizedBox(
                   height: 4,
@@ -287,21 +272,13 @@ class _BookBikeState extends State<BookBike> {
 
                 Row(
                   children: [
-                    Text(
-                      "USD",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
 
 
                     SizedBox(
                       width: 8,
                     ),
                     Text(
-                      widget.bike.price,
+                      "Ranking",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -336,7 +313,7 @@ class _BookBikeState extends State<BookBike> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
-                    widget.bike.biketype,
+                    widget.f1.ranking,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -379,7 +356,7 @@ class _BookBikeState extends State<BookBike> {
           children: [
 
             Text(
-              " 0-100 kph",
+              " Team Drivers",
               style: TextStyle(
                 color: selected ? Colors.white : Colors.white,
                 fontSize: 18,
@@ -401,13 +378,7 @@ class _BookBikeState extends State<BookBike> {
               ),
             ),
 
-            Text(
-              "seconds",
-              style: TextStyle(
-                color: selected ? Colors.white : Colors.white,
-                fontSize: 14,
-              ),
-            ),
+
 
           ],
         ),

@@ -8,7 +8,10 @@ import 'package:car_rental/available_cars.dart';
 import 'package:car_rental/book_car.dart';
 import 'package:car_rental/book_bike.dart';
 import 'package:car_rental/bike_widget.dart';
+import 'package:car_rental/f1_widget.dart';
+import 'package:car_rental/book_f1.dart';
 import 'package:car_rental/available_bikes.dart';
+import 'package:car_rental/available_f1.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Showroom extends StatefulWidget {
@@ -30,6 +33,7 @@ class _ShowroomState extends State<Showroom> {
   NavigationItem selectedItem;
   List<Bike> bikes = getBikeList();
   List<Car> cars = getCarList();
+  List<F1> f1s = getF1List();
   List<Dealer> dealers = getDealerList();
 
   @override
@@ -409,7 +413,10 @@ class _ShowroomState extends State<Showroom> {
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           children: buildDealers(),
+
+
                         ),
+
                       ),
                     ],
                   ),
@@ -458,12 +465,30 @@ class _ShowroomState extends State<Showroom> {
     }
     return list;
   }
+  List<Widget> buildF1Deals(){
+    List<Widget> list = [];
+    for (var i = 0; i < f1s.length; i++) {
+      list.add(
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BookF1(f1: f1s[i])),
+                );
+              },
+              child: buildF1(f1s[i], i)
+          )
+      );
+    }
+    return list;
+  }
 
   List<Widget> buildDealers(){
     List<Widget> list = [];
     for (var i = 0; i < dealers.length; i++) {
       list.add(buildDealer(dealers[i], i));
     }
+
     return list;
   }
 
