@@ -141,11 +141,6 @@ class _ShowroomState extends State<Showroom> {
                           ],
                         ),
                       ),
-
-
-
-
-
                       Container(
                         height: 260,
                         child: ListView(
@@ -389,9 +384,6 @@ class _ShowroomState extends State<Showroom> {
 
                             Row(
                               children: [
-
-
-
                                 SizedBox(
                                   width: 8,
                                 ),
@@ -413,8 +405,6 @@ class _ShowroomState extends State<Showroom> {
                           physics: BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           children: buildDealers(),
-
-
                         ),
 
                       ),
@@ -441,7 +431,7 @@ class _ShowroomState extends State<Showroom> {
               MaterialPageRoute(builder: (context) => BookCar(car: cars[i])),
             );
           },
-          child: buildCar(cars[i], i)
+          child: buildCar(cars[i], i,)
         )
       );
     }
@@ -486,7 +476,7 @@ class _ShowroomState extends State<Showroom> {
   List<Widget> buildDealers(){
     List<Widget> list = [];
     for (var i = 0; i < dealers.length; i++) {
-      list.add(buildDealer(dealers[i], i));
+      list.add(buildDealer(dealers[i], i, context));
     }
 
     return list;

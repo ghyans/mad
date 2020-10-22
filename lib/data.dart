@@ -469,7 +469,8 @@ List<Dealer> getDealerList(){
       "assets/images/motogplogo.png",
     ),
     Dealer(
-      "Nascar", 10,
+      "Nascar",
+      10,
       "assets/images/nascarlogo.png",
     ),
   ];
